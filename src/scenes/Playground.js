@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import config from '../config';
 import CONST from '../consts';
 import { gridToPixel, pixelToGrid } from '../tools';
-import GridSprite from '../gameObjects/GridSprite';
+import GridSprite, { STATES as GRID_STATES } from '../gameObjects/GridSprite';
 import PlayerSprite from '../gameObjects/PlayerSprite';
 import WallSprite from '../gameObjects/WallSprite';
 
@@ -31,7 +31,7 @@ export default class Playground extends Phaser.Scene {
         bgTexture.fillRoundedRect(0, 0, config.gridWidth - 1, config.gridWidth - 1, 3);
         bgTexture.generateTexture('bg-fill', config.gridWidth, config.gridWidth);
 
-        [CONST.PLAYER_BLUE, CONST.PLAYER_GREEN, CONST.PLAYER_RED, CONST.PLAYER_YELLOW].forEach((playerConf) => {
+        [CONST.PLAYER_BLUE, CONST.PLAYER_GREEN, CONST.PLAYER_RED, CONST.PLAYER_PINK].forEach((playerConf) => {
             let playerTexture = new Phaser.GameObjects.Graphics(this);
             playerTexture.fillStyle(playerConf.color);
             playerTexture.fillCircle(config.gridWidth / 2, config.gridWidth / 2, config.gridWidth / 2);
@@ -43,6 +43,13 @@ export default class Playground extends Phaser.Scene {
             overTexture.fillRoundedRect(0, 0, config.gridWidth, config.gridWidth, 3);
             overTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
             overTexture.generateTexture(`over-${playerConf.key}`, config.gridWidth, config.gridWidth);
+
+            let markedTexture = new Phaser.GameObjects.Graphics(this);
+            markedTexture.lineStyle(1, playerConf.gridMarkedStrokeColor);
+            markedTexture.fillStyle(playerConf.gridMarkedFillColor);
+            markedTexture.fillRoundedRect(0, 0, config.gridWidth, config.gridWidth, 3);
+            markedTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
+            markedTexture.generateTexture(`marked-${playerConf.key}`, config.gridWidth, config.gridWidth);
         });
 
         // ----------------- Create background tiles ------------------------
@@ -61,7 +68,21 @@ export default class Playground extends Phaser.Scene {
         // --------------------- create player sprites -------------------
         this.players = this.physics.add.group();
         this.players.add(new PlayerSprite(this, CONST.PLAYER_BLUE));
-        // this.players.add(new PlayerSprite(this, CONST.PLAYER_RED));
+        this.players.add(new PlayerSprite(this, CONST.PLAYER_PINK));
+
+        // ------------------- Create annexed start tiles for players: ---------------------
+        this.players.getChildren().forEach((player) => {
+            let gridPos = pixelToGrid(player.x, player.y);
+            this.bgTiles[gridPos.y - 1][gridPos.x - 1].annex(player);
+            this.bgTiles[gridPos.y - 1][gridPos.x].annex(player);
+            this.bgTiles[gridPos.y - 1][gridPos.x + 1].annex(player);
+            this.bgTiles[gridPos.y][gridPos.x - 1].annex(player);
+            this.bgTiles[gridPos.y][gridPos.x].annex(player);
+            this.bgTiles[gridPos.y][gridPos.x + 1].annex(player);
+            this.bgTiles[gridPos.y + 1][gridPos.x - 1].annex(player);
+            this.bgTiles[gridPos.y + 1][gridPos.x].annex(player);
+            this.bgTiles[gridPos.y + 1][gridPos.x + 1].annex(player);
+        });
 
         // --------------- Surrounding Walls ------------------
         this.walls = this.physics.add.staticGroup();
@@ -78,6 +99,7 @@ export default class Playground extends Phaser.Scene {
             console.log(o1, o2);
         });
 
+        // -------------------- Get Ready Sequence ---------------------------
         // Add Start Counter
         let count3 = this.add.text(-20, config.gameHeight / 2 - 100, '3', {
             fontSize: '200px',
@@ -97,20 +119,26 @@ export default class Playground extends Phaser.Scene {
         count3.setAlpha(0);
         count2.setAlpha(0);
         count1.setAlpha(0);
+        count3.setScale(10, 10);
+        count2.setScale(10, 10);
+        count1.setScale(10, 10);
+
         this.tweens.timeline({
             ease: 'Quad.easeIn',
             onComplete: () => {
                 count1.destroy(true);
                 count2.destroy(true);
                 count3.destroy(true);
-                this.players.getChildren().forEach(player => player.start());
+                this.players.getChildren().forEach((player) => player.start());
             },
             tweens: [
                 {
                     targets: count3,
                     duration: 300,
                     x: config.gameWidth / 2,
-                    alpha: 1
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
                 },
                 {
                     targets: count3,
@@ -125,7 +153,9 @@ export default class Playground extends Phaser.Scene {
                     duration: 300,
                     offset: 1000,
                     x: config.gameWidth / 2,
-                    alpha: 1
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
                 },
                 {
                     targets: count2,
@@ -142,7 +172,9 @@ export default class Playground extends Phaser.Scene {
                     offset: 2000,
                     ease: 'Quad.easeIn',
                     x: config.gameWidth / 2,
-                    alpha: 1
+                    alpha: 1,
+                    scaleX: 1,
+                    scaleY: 1
                 },
                 {
                     targets: count1,
@@ -156,12 +188,23 @@ export default class Playground extends Phaser.Scene {
         });
     }
 
-    update(time, delta) {
-        this.players.getChildren().forEach((player) => {
-            let { x, y } = pixelToGrid(player.x, player.y);
-            let tile = this.bgTiles[y][x];
-            tile.annex(player);
+    // update(time, delta) {}
+
+    getTileForPixel(x, y) {
+        let { x: tileX, y: tileY } = pixelToGrid(x, y);
+        if (tileX >= 0 && tileY >= 0 && tileY < this.bgTiles.length && tileX < this.bgTiles[tileY].length) {
+            return this.bgTiles[tileY][tileX];
+        }
+        return null;
+    }
+
+    removeMarkedTiles(player) {
+        this.bgTiles.forEach((line) => {
+            line.forEach((tile) => {
+                if (tile.propertyOfPlayer === player && tile.state === GRID_STATES.MARKED) {
+                    tile.free();
+                }
+            });
         });
-        // console.log(x, y);
     }
 }

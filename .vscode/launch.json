@@ -1,0 +1,22 @@
+{
+	// Verwendet IntelliSense zum Ermitteln möglicher Attribute.
+	// Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+	// Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch Chrome against localhost",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "/usr/local/bin/chromium",
+            "runtimeArgs": [
+                "--new-window",
+                "--remote-debugging-port=9222",
+                "--disable-background-networking",
+                "--user-data-dir=${env:HOME}/temp/chrome-debug-profile"
+            ]
+		}
+	]
+}
