@@ -8,10 +8,14 @@ import { STATES as TILE_STATE } from './GridSprite';
 export const DIR_LEFT = 'l';
 export const DIR_RIGHT = 'r';
 
+export const ALIVE = 1;
+export const DEATH = 0;
+
 export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, playerConf) {
         super(scene, 0, 0, `player-${playerConf.key}`, null);
         this.playerConf = playerConf;
+        this.state = ALIVE;
 
         // Local variables:
         /** @var {String} The next direction the snake will take, as soon as turning is possible */
@@ -32,14 +36,14 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
         // add key handlers:
         this.lKey = scene.input.keyboard.addKey(playerConf.keyLeft);
         this.lKey.on('down', () => {
-            if (!this.nextTurn) {
+            if (this.active && !this.nextTurn) {
                 this.nextTurn = DIR_LEFT;
             }
         });
 
         this.rKey = scene.input.keyboard.addKey(playerConf.keyRight);
         this.rKey.on('down', () => {
-            if (!this.nextTurn) {
+            if (this.active && !this.nextTurn) {
                 this.nextTurn = DIR_RIGHT;
             }
         });
@@ -50,6 +54,7 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
     start() {
         this.setVelocity(this.dirVector[0] * config.playerSpeed, this.dirVector[1] * config.playerSpeed);
         this.setActive(true);
+        this.setAlive();
     }
 
     preUpdate(time, delta) {
@@ -81,21 +86,44 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
         }
 
         /** Entered a new tile, so let's see what's to do: */
-        if (this.active && this.previousTile !== tile) {
+        if (this.state === ALIVE && this.previousTile !== tile) {
             if (tile.state === TILE_STATE.FREE) {
                 // Mine! This is now mine!
                 tile.mark(this);
+            } else if (tile.state === TILE_STATE.ANNEXED && tile.propertyOfPlayer !== this) {
+                // Also mine, but tentatively: this is annexed by another player, I need to
+                // close my line to make it permanent:
+                tile.mark(this);
             } else if (tile.state === TILE_STATE.MARKED && tile.propertyOfPlayer === this) {
                 // Boom! Oops, run into my own tail:
-                this.setVelocity(0, 0);
-                this.setActive(false);
+                this.die();
             } else if (tile.state === TILE_STATE.MARKED && tile.propertyOfPlayer !== this) {
                 // Ran into another player's tail: needs to clean up its tail
-                this.scene.removeMarkedTiles(tile.propertyOfPlayer);
+                tile.propertyOfPlayer.die();
                 tile.mark(this);
+            } else if (
+                this.previousTile &&
+                this.previousTile.state === TILE_STATE.MARKED &&
+                tile.state === TILE_STATE.ANNEXED &&
+                tile.propertyOfPlayer === this
+            ) {
+                // OK, reached back home - now fill the captured area
+                this.scene.fillAnnexedArea(this);
             }
         }
 
         this.previousTile = tile;
+    }
+
+    setAlive() {
+        this.setActive(true);
+        this.state = ALIVE;
+    }
+
+    die() {
+        this.setVelocity(0, 0);
+        this.setActive(false);
+        this.state = DEATH;
+        this.scene.removeMarkedTiles(this);
     }
 }

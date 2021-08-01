@@ -13,8 +13,10 @@ export default class GridSprite extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, DEFAULT_TEXTURE, null);
         this.propertyOfPlayer = null;
+        this.previousPlayer = null; // marks the player PREVIOUSLY assigned to this tile
 
         this.state = STATES.FREE;
+        this.floodMark = false; // used for flood-filling
 
         this.setOrigin(0, 0);
         scene.sys.displayList.add(this);
@@ -23,8 +25,18 @@ export default class GridSprite extends Phaser.Physics.Arcade.Sprite {
     }
 
     free() {
-        this.propertyOfPlayer = null;
-        this.state = STATES.FREE;
+        // If a previous player is assigned, this means that this tile was
+        // previously annexed by the previous player, but marked for eating from the actual
+        // player. In this case, the tile will get returned to the previous player:
+        if (this.previousPlayer) {
+            this.propertyOfPlayer = this.previousPlayer;
+            this.previousPlayer = null;
+            this.state = STATES.ANNEXED;
+        } else {
+            // otherwise, must be free before, so free it:
+            this.propertyOfPlayer = null;
+            this.state = STATES.FREE;
+        }
         this.updateTexture();
     }
 
@@ -34,6 +46,7 @@ export default class GridSprite extends Phaser.Physics.Arcade.Sprite {
      * @param {PlayerSprite} playerKey
      */
     mark(player) {
+        this.previousPlayer = this.propertyOfPlayer;
         this.propertyOfPlayer = player;
         this.state = STATES.MARKED;
         this.updateTexture();
@@ -45,6 +58,7 @@ export default class GridSprite extends Phaser.Physics.Arcade.Sprite {
      * @param {PlayerSprite} playerKey
      */
     annex(player) {
+        this.previousPlayer = null;
         this.propertyOfPlayer = player;
         this.state = STATES.ANNEXED;
         this.updateTexture();
@@ -62,6 +76,9 @@ export default class GridSprite extends Phaser.Physics.Arcade.Sprite {
             default:
                 textureKey = DEFAULT_TEXTURE;
         }
+        // if (!this.propertyOfPlayer && this.floodMark === true) {
+        //     textureKey = `flood-mark`;
+        // }
 
         if (this.texture.key !== textureKey) {
             this.setTexture(textureKey);

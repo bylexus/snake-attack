@@ -10,7 +10,7 @@ export default {
         gridMarkedStrokeColor: 0x444488,
         keyLeft: Phaser.Input.Keyboard.KeyCodes.Q,
         keyRight: Phaser.Input.Keyboard.KeyCodes.W,
-        startGridPos: [1, 1], // positive: from top, left, negative: from bottom, right
+        startGridPos: [6, 6], // positive: from top, left, negative: from bottom, right
         startVector: [1, 0]
     },
     PLAYER_RED: {
@@ -22,7 +22,7 @@ export default {
         gridMarkedStrokeColor: 0x884444,
         keyLeft: Phaser.Input.Keyboard.KeyCodes.O,
         keyRight: Phaser.Input.Keyboard.KeyCodes.P,
-        startGridPos: [-1, 1],
+        startGridPos: [-6, 6],
         startVector: [-1, 0]
     },
     PLAYER_GREEN: {
@@ -34,7 +34,7 @@ export default {
         gridMarkedStrokeColor: 0x448844,
         keyLeft: Phaser.Input.Keyboard.KeyCodes.X,
         keyRight: Phaser.Input.Keyboard.KeyCodes.C,
-        startGridPos: [1, -1],
+        startGridPos: [6, -6],
         startVector: [1, 0]
     },
     PLAYER_PINK: {
@@ -46,7 +46,7 @@ export default {
         gridMarkedStrokeColor: 0x940461,
         keyLeft: Phaser.Input.Keyboard.KeyCodes.N,
         keyRight: Phaser.Input.Keyboard.KeyCodes.M,
-        startGridPos: [-1, -1],
+        startGridPos: [-6, -6],
         startVector: [-1, 0]
     }
 };

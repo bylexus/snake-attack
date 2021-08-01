@@ -4,8 +4,8 @@ export default {
     // gameWidth: 640,
     // gameHeight: 480,
     gridWidth: 16,
-    gridOffsetX: 16,
-    gridOffsetY: 16,
+    gridOffsetX: 0,
+    gridOffsetY: 0,
 
     get countGridX() {
         if (!this._countGridX) {

@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import config from './config';
-import PlaygroundScrene from './scenes/Playground';
+import PlaygroundScene from './scenes/Playground';
 
 let gameConfig = {
     type: Phaser.AUTO,
@@ -17,7 +17,7 @@ let gameConfig = {
             gravity: { x: 0, y: 0 }
         }
     },
-    scene: [PlaygroundScrene]
+    scene: [PlaygroundScene]
 };
 
 const game = new Phaser.Game(gameConfig);
