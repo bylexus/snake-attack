@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import config from './config';
 import PlaygroundScene from './scenes/Playground';
+import ReadyScene from './scenes/Ready';
+import GameOverScene from './scenes/GameOver';
 
 let gameConfig = {
     type: Phaser.AUTO,
@@ -17,7 +19,10 @@ let gameConfig = {
             gravity: { x: 0, y: 0 }
         }
     },
-    scene: [PlaygroundScene]
+    scene: [PlaygroundScene, ReadyScene, GameOverScene],
+    dom: {
+        createContainer: true
+    }
 };
 
 const game = new Phaser.Game(gameConfig);

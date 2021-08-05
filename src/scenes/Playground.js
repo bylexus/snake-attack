@@ -8,8 +8,9 @@ import WallSprite from '../gameObjects/WallSprite';
 import { BoundingBox } from '../tools';
 
 export default class Playground extends Phaser.Scene {
-    constructor(config) {
-        super(config);
+    constructor(objConf) {
+        objConf = Object.assign({}, objConf, { key: 'playground' });
+        super(objConf);
 
         this.bgTiles = [];
         this.players = null;
@@ -17,13 +18,9 @@ export default class Playground extends Phaser.Scene {
         this.walls = null;
     }
 
-    preload() {
-        console.log('Playground preload');
-    }
+    preload() {}
 
     async create() {
-        console.log('Playground create');
-
         // ---------- Create tile textures -------------------
         let bgTexture = new Phaser.GameObjects.Graphics(this);
         bgTexture.lineStyle(1, 0x111111);
@@ -119,9 +116,20 @@ export default class Playground extends Phaser.Scene {
         this.physics.add.collider(this.walls, this.players, (wall, player) => {
             player.die();
         });
+        this.physics.add.collider(this.players, this.players, (player1, player2) => {
+            player1.die();
+            player2.die();
+        });
 
-        await this.playGetReadySequence();
-        this.players.getChildren().forEach((player) => player.start());
+        this.scene.get('ready').events.on('done', () => {
+            this.players.getChildren().forEach((player) => player.start());
+        });
+        this.scene.get('gameover').events.on('replay', () => {
+            this.scene.stop('gameover');
+            this.scene.restart(this);
+        });
+        this.scene.launch('ready');
+        // this.scene.launch('gameover', { survivingPlayer: this.players.getChildren()[0] });
 
         // this.addTestArea();
         // this.fillAnnexedArea(this.players.getChildren()[0]);
@@ -141,6 +149,16 @@ export default class Playground extends Phaser.Scene {
         this.bgTiles.forEach((line) => {
             line.forEach((tile) => {
                 if (tile.propertyOfPlayer === player && tile.state === GRID_STATES.MARKED) {
+                    tile.free();
+                }
+            });
+        });
+    }
+
+    removePlayerTiles(player) {
+        this.bgTiles.forEach((line) => {
+            line.forEach((tile) => {
+                if (tile.propertyOfPlayer === player) {
                     tile.free();
                 }
             });
@@ -213,95 +231,23 @@ export default class Playground extends Phaser.Scene {
         this.floodBBox(player, bbox, x, y + 1); // top
     }
 
-    playGetReadySequence() {
-        return new Promise((resolve, reject) => {
-            // Add Start Counter
-            let count3 = this.add.text(-20, config.gameHeight / 2 - 100, '3', {
-                fontSize: '200px',
-                color: '#fff',
-                align: 'center'
-            });
-            let count2 = this.add.text(-20, config.gameHeight / 2 - 100, '2', {
-                fontSize: '200px',
-                color: '#fff',
-                align: 'center'
-            });
-            let count1 = this.add.text(-20, config.gameHeight / 2 - 100, '1', {
-                fontSize: '200px',
-                color: '#fff',
-                align: 'center'
-            });
-            count3.setAlpha(0);
-            count2.setAlpha(0);
-            count1.setAlpha(0);
-            count3.setScale(10, 10);
-            count2.setScale(10, 10);
-            count1.setScale(10, 10);
-
-            this.tweens.timeline({
-                ease: 'Quad.easeIn',
-                onComplete: () => {
-                    count1.destroy(true);
-                    count2.destroy(true);
-                    count3.destroy(true);
-                    resolve();
-                },
-                tweens: [
-                    {
-                        targets: count3,
-                        duration: 300,
-                        x: config.gameWidth / 2,
-                        alpha: 1,
-                        scaleX: 1,
-                        scaleY: 1
-                    },
-                    {
-                        targets: count3,
-                        duration: 300,
-                        x: config.gameWidth + 20,
-                        offset: 1000,
-                        alpha: 0
-                    },
-
-                    {
-                        targets: count2,
-                        duration: 300,
-                        offset: 1000,
-                        x: config.gameWidth / 2,
-                        alpha: 1,
-                        scaleX: 1,
-                        scaleY: 1
-                    },
-                    {
-                        targets: count2,
-                        duration: 300,
-                        x: config.gameWidth + 20,
-                        ease: 'Quad.easeIn',
-                        offset: 2000,
-                        alpha: 0
-                    },
-
-                    {
-                        targets: count1,
-                        duration: 300,
-                        offset: 2000,
-                        ease: 'Quad.easeIn',
-                        x: config.gameWidth / 2,
-                        alpha: 1,
-                        scaleX: 1,
-                        scaleY: 1
-                    },
-                    {
-                        targets: count1,
-                        duration: 300,
-                        x: config.gameWidth + 20,
-                        ease: 'Quad.easeIn',
-                        offset: 3000,
-                        alpha: 0
-                    }
-                ]
-            });
+    checkGameOver() {
+        let activePlayerCount = 0;
+        let survivingPlayer = null;
+        this.players.getChildren().forEach((p) => {
+            if (p.isAlive()) {
+                survivingPlayer = p;
+                activePlayerCount++;
+            }
         });
+        if (activePlayerCount <= 1) {
+            this.playGameOver(survivingPlayer);
+        }
+    }
+
+    playGameOver(survivingPlayer) {
+        this.scene.launch('gameover', { survivingPlayer });
+        this.scene.pause(this);
     }
 
     addTestArea() {

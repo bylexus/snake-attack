@@ -115,6 +115,10 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
         this.previousTile = tile;
     }
 
+    isAlive() {
+        return this.state === ALIVE;
+    }
+
     setAlive() {
         this.setActive(true);
         this.state = ALIVE;
@@ -124,6 +128,8 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
         this.setVelocity(0, 0);
         this.setActive(false);
         this.state = DEATH;
-        this.scene.removeMarkedTiles(this);
+        this.scene.removePlayerTiles(this);
+        this.setVisible(false);
+        this.scene.checkGameOver();
     }
 }

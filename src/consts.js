@@ -4,6 +4,7 @@ export default {
     PLAYER_BLUE: {
         key: 'blue',
         color: 0x4444ff,
+        cssColor: '#4444ff',
         gridOverFillColor: 0x0000aa,
         gridOverStrokeColor: 0x000088,
         gridMarkedFillColor: 0x4444aa,
@@ -16,6 +17,7 @@ export default {
     PLAYER_RED: {
         key: 'red',
         color: 0xff4444,
+        cssColor: '#ff4444',
         gridOverFillColor: 0xaa0000,
         gridOverStrokeColor: 0x880000,
         gridMarkedFillColor: 0xaa4444,
@@ -28,6 +30,7 @@ export default {
     PLAYER_GREEN: {
         key: 'green',
         color: 0x44ff44,
+        cssColor: '#44ff44',
         gridOverFillColor: 0x00aa00,
         gridOverStrokeColor: 0x008800,
         gridMarkedFillColor: 0x44aa44,
@@ -40,6 +43,7 @@ export default {
     PLAYER_PINK: {
         key: 'pink',
         color: 0xf37fca,
+        cssColor: '#f37fca',
         gridOverFillColor: 0xf1039d,
         gridOverStrokeColor: 0x940461,
         gridMarkedFillColor: 0xf181c9,
