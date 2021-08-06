@@ -7,51 +7,94 @@ import PlayerSprite from '../gameObjects/PlayerSprite';
 import WallSprite from '../gameObjects/WallSprite';
 import { BoundingBox } from '../tools';
 
+const STATE_PLAYING = 1;
+const STATE_GAME_OVER = 2;
+const STATE_CHECK_GAMEOVER = 3;
+
 export default class Playground extends Phaser.Scene {
     constructor(objConf) {
         objConf = Object.assign({}, objConf, { key: 'playground' });
         super(objConf);
 
+        this.onetimeInit = false;
         this.bgTiles = [];
         this.players = null;
-
+        this.state = STATE_PLAYING;
         this.walls = null;
     }
 
-    preload() {}
+    /**
+     * Init is used to clean up / reset previous game objects, to avoid memory leaks
+     */
+    init(data) {
+        this.state = STATE_PLAYING;
 
-    async create() {
-        // ---------- Create tile textures -------------------
-        let bgTexture = new Phaser.GameObjects.Graphics(this);
-        bgTexture.lineStyle(1, 0x111111);
-        bgTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
-        bgTexture.fillStyle(0x333333);
-        bgTexture.fillRoundedRect(0, 0, config.gridWidth - 1, config.gridWidth - 1, 3);
-        bgTexture.generateTexture('bg-fill', config.gridWidth, config.gridWidth);
+        // remove existing bg grids:
+        if (this.bgTiles) {
+            this.bgTiles.forEach((line) => {
+                line.forEach((tile) => {
+                    tile.destroy();
+                });
+            });
+            this.bgTiles = [];
+        }
 
-        [CONST.PLAYER_BLUE, CONST.PLAYER_GREEN, CONST.PLAYER_RED, CONST.PLAYER_PINK].forEach((playerConf) => {
-            let playerTexture = new Phaser.GameObjects.Graphics(this);
-            playerTexture.fillStyle(playerConf.color);
-            playerTexture.fillCircle(config.gridWidth / 2, config.gridWidth / 2, config.gridWidth / 2);
-            playerTexture.generateTexture(`player-${playerConf.key}`, config.gridWidth, config.gridWidth);
+        // remove existing players:
+        if (this.players) {
+            this.players.destroy();
+            this.players = null;
+        }
 
-            let overTexture = new Phaser.GameObjects.Graphics(this);
-            overTexture.lineStyle(1, playerConf.gridOverStrokeColor);
-            overTexture.fillStyle(playerConf.gridOverFillColor);
-            overTexture.fillRoundedRect(0, 0, config.gridWidth, config.gridWidth, 3);
-            overTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
-            overTexture.generateTexture(`over-${playerConf.key}`, config.gridWidth, config.gridWidth);
+        // remove existing walls:
+        if (this.walls) {
+            this.walls.destroy();
+            this.walls = null;
+        }
 
-            let markedTexture = new Phaser.GameObjects.Graphics(this);
-            markedTexture.lineStyle(1, playerConf.gridMarkedStrokeColor);
-            markedTexture.fillStyle(playerConf.gridMarkedFillColor);
-            markedTexture.fillRoundedRect(0, 0, config.gridWidth, config.gridWidth, 3);
-            markedTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
-            markedTexture.generateTexture(`marked-${playerConf.key}`, config.gridWidth, config.gridWidth);
-        });
+        // Do one-time-init things here, such as creating textures (only once):
+        if (this.onetimeInit !== true) {
+            this.onetimeInit = true;
+            // ---------- Create tile textures -------------------
+            let bgTexture = new Phaser.GameObjects.Graphics(this);
+            bgTexture.lineStyle(1, 0x111111);
+            bgTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
+            bgTexture.fillStyle(0x333333);
+            bgTexture.fillRoundedRect(0, 0, config.gridWidth - 1, config.gridWidth - 1, 3);
+            bgTexture.generateTexture('bg-fill', config.gridWidth, config.gridWidth);
 
-        // ----------------- Create background tiles ------------------------
+            // --------------- create player textures: ---------------------
+            [CONST.PLAYER_BLUE, CONST.PLAYER_GREEN, CONST.PLAYER_RED, CONST.PLAYER_PINK].forEach((playerConf) => {
+                let playerTexture = new Phaser.GameObjects.Graphics(this);
+                playerTexture.fillStyle(playerConf.color);
+                playerTexture.fillCircle(config.gridWidth / 2, config.gridWidth / 2, config.gridWidth / 2);
+                playerTexture.generateTexture(`player-${playerConf.key}`, config.gridWidth, config.gridWidth);
 
+                let overTexture = new Phaser.GameObjects.Graphics(this);
+                overTexture.lineStyle(1, playerConf.gridOverStrokeColor);
+                overTexture.fillStyle(playerConf.gridOverFillColor);
+                overTexture.fillRoundedRect(0, 0, config.gridWidth, config.gridWidth, 3);
+                overTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
+                overTexture.generateTexture(`over-${playerConf.key}`, config.gridWidth, config.gridWidth);
+
+                let markedTexture = new Phaser.GameObjects.Graphics(this);
+                markedTexture.lineStyle(1, playerConf.gridMarkedStrokeColor);
+                markedTexture.fillStyle(playerConf.gridMarkedFillColor);
+                markedTexture.fillRoundedRect(0, 0, config.gridWidth, config.gridWidth, 3);
+                markedTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
+                markedTexture.generateTexture(`marked-${playerConf.key}`, config.gridWidth, config.gridWidth);
+            });
+        }
+    }
+
+    preload(data) {
+        this.load.image('blue-particle', 'assets/particles/blue.png');
+        this.load.image('red-particle', 'assets/particles/red.png');
+        this.load.image('green-particle', 'assets/particles/green.png');
+        this.load.image('yellow-particle', 'assets/particles/yellow.png');
+    }
+
+    create(data) {
+        // ----------------- Create background tiles/grid sprites ------------------------
         this.bgTiles = [];
         for (let y = 0; y < config.countGridY; y++) {
             let row = [];
@@ -65,9 +108,12 @@ export default class Playground extends Phaser.Scene {
 
         // --------------------- create player sprites -------------------
         this.players = this.physics.add.group();
-        this.players.add(new PlayerSprite(this, CONST.PLAYER_BLUE));
-        this.players.add(new PlayerSprite(this, CONST.PLAYER_RED));
-        this.players.add(new PlayerSprite(this, CONST.PLAYER_GREEN));
+        (data.players || []).forEach((player) => {
+            this.players.add(new PlayerSprite(this, player));
+        });
+        // this.players.add(new PlayerSprite(this, CONST.PLAYER_BLUE));
+        // this.players.add(new PlayerSprite(this, CONST.PLAYER_RED));
+        // this.players.add(new PlayerSprite(this, CONST.PLAYER_GREEN));
         // this.players.add(new PlayerSprite(this, CONST.PLAYER_PINK));
 
         // ------------------- Create annexed start tiles for players: ---------------------
@@ -110,6 +156,7 @@ export default class Playground extends Phaser.Scene {
                 config.gameHeight
             )
         );
+
         // DEBUG:
         // this.walls.setVisible(false);
 
@@ -121,9 +168,12 @@ export default class Playground extends Phaser.Scene {
             player2.die();
         });
 
+        this.scene.get('ready').events.off('done');
         this.scene.get('ready').events.on('done', () => {
             this.players.getChildren().forEach((player) => player.start());
+            this.state = STATE_PLAYING;
         });
+        this.scene.get('gameover').events.off('replay');
         this.scene.get('gameover').events.on('replay', () => {
             this.scene.stop('gameover');
             this.scene.restart(this);
@@ -135,7 +185,24 @@ export default class Playground extends Phaser.Scene {
         // this.fillAnnexedArea(this.players.getChildren()[0]);
     }
 
-    // update(time, delta) {}
+    update(time, delta) {
+        if (this.state === STATE_CHECK_GAMEOVER) {
+            let activePlayerCount = 0;
+            let survivingPlayer = null;
+            this.players.getChildren().forEach((p) => {
+                if (p.isAlive()) {
+                    survivingPlayer = p;
+                    activePlayerCount++;
+                }
+            });
+            if (activePlayerCount <= 1) {
+                this.state = STATE_GAME_OVER;
+                this.playGameOver(survivingPlayer);
+            } else {
+                this.state = STATE_PLAYING;
+            }
+        }
+    }
 
     getTileForPixel(x, y) {
         let { x: tileX, y: tileY } = pixelToGrid(x, y);
@@ -232,22 +299,15 @@ export default class Playground extends Phaser.Scene {
     }
 
     checkGameOver() {
-        let activePlayerCount = 0;
-        let survivingPlayer = null;
-        this.players.getChildren().forEach((p) => {
-            if (p.isAlive()) {
-                survivingPlayer = p;
-                activePlayerCount++;
-            }
-        });
-        if (activePlayerCount <= 1) {
-            this.playGameOver(survivingPlayer);
+        // game over processing is done in the update() method later:
+        if (this.state === STATE_PLAYING) {
+            this.state = STATE_CHECK_GAMEOVER;
         }
     }
 
     playGameOver(survivingPlayer) {
+        this.state = STATE_GAME_OVER;
         this.scene.launch('gameover', { survivingPlayer });
-        this.scene.pause(this);
     }
 
     addTestArea() {

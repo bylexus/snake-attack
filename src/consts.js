@@ -12,7 +12,8 @@ export default {
         keyLeft: Phaser.Input.Keyboard.KeyCodes.Q,
         keyRight: Phaser.Input.Keyboard.KeyCodes.W,
         startGridPos: [6, 6], // positive: from top, left, negative: from bottom, right
-        startVector: [1, 0]
+        startVector: [1, 0],
+        particleTexture: 'blue-particle'
     },
     PLAYER_RED: {
         key: 'red',
@@ -25,7 +26,8 @@ export default {
         keyLeft: Phaser.Input.Keyboard.KeyCodes.O,
         keyRight: Phaser.Input.Keyboard.KeyCodes.P,
         startGridPos: [-6, 6],
-        startVector: [-1, 0]
+        startVector: [-1, 0],
+        particleTexture: 'red-particle'
     },
     PLAYER_GREEN: {
         key: 'green',
@@ -38,7 +40,8 @@ export default {
         keyLeft: Phaser.Input.Keyboard.KeyCodes.X,
         keyRight: Phaser.Input.Keyboard.KeyCodes.C,
         startGridPos: [6, -6],
-        startVector: [1, 0]
+        startVector: [1, 0],
+        particleTexture: 'green-particle'
     },
     PLAYER_PINK: {
         key: 'pink',
@@ -51,6 +54,7 @@ export default {
         keyLeft: Phaser.Input.Keyboard.KeyCodes.N,
         keyRight: Phaser.Input.Keyboard.KeyCodes.M,
         startGridPos: [-6, -6],
-        startVector: [-1, 0]
+        startVector: [-1, 0],
+        particleTexture: 'yellow-particle'
     }
 };

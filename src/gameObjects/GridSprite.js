@@ -76,12 +76,15 @@ export default class GridSprite extends Phaser.Physics.Arcade.Sprite {
             default:
                 textureKey = DEFAULT_TEXTURE;
         }
-        // if (!this.propertyOfPlayer && this.floodMark === true) {
-        //     textureKey = `flood-mark`;
-        // }
 
         if (this.texture.key !== textureKey) {
             this.setTexture(textureKey);
         }
+    }
+
+    destroy() {
+        super.destroy();
+        this.propertyOfPlayer = null;
+        this.previousPlayer = null;
     }
 }

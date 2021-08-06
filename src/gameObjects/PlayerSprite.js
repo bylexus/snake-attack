@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import CONST from 'phaser/src/physics/arcade/const';
 import config from '../config';
 import { gridToPixel, pixelToGrid } from '../tools';
-import LaserSprite from './LaserSprite';
 import { STATES as TILE_STATE } from './GridSprite';
 
 export const DIR_LEFT = 'l';
@@ -24,6 +23,7 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
         this.lKey = null;
         this.rKey = null;
         this.previousTile = null;
+        this.particleEmitter = null;
 
         scene.sys.displayList.add(this);
         scene.sys.updateList.add(this);
@@ -46,6 +46,19 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
             if (this.active && !this.nextTurn) {
                 this.nextTurn = DIR_RIGHT;
             }
+        });
+
+        let particles = scene.add.particles(this.playerConf.particleTexture);
+        this.particleEmitter = particles.createEmitter({
+            follow: this,
+            lifespan: 1000,
+            scale: { start: 0.2, end: 0 },
+            gravityX: 0,
+            gravityY: 0,
+            quantity: 1,
+            speed: 10,
+            blendMode: 'ADD',
+            radial: true
         });
 
         this.setActive(false);
@@ -125,11 +138,28 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
     }
 
     die() {
+        if (this.particleEmitter) {
+            this.particleEmitter.setSpeed(100);
+            this.particleEmitter.setScale({ min: 0, max: 0.4 });
+            this.particleEmitter.explode(100, this.x, this.y);
+            this.particleEmitter.stop();
+        }
         this.setVelocity(0, 0);
         this.setActive(false);
         this.state = DEATH;
         this.scene.removePlayerTiles(this);
         this.setVisible(false);
         this.scene.checkGameOver();
+    }
+
+    destroy() {
+        super.destroy();
+        this.previousTile = null;
+        if (this.particleEmitter) {
+            this.particleEmitter.remove();
+        }
+        this.particleEmitter = null;
+        this.lKey = null;
+        this.rKey = null;
     }
 }
