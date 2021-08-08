@@ -18,15 +18,18 @@ export default class Playground extends Phaser.Scene {
 
         this.onetimeInit = false;
         this.bgTiles = [];
+        this.selectedPlayers = [];
         this.players = null;
         this.state = STATE_PLAYING;
         this.walls = null;
+        this.explosion = null;
     }
 
     /**
      * Init is used to clean up / reset previous game objects, to avoid memory leaks
      */
     init(data) {
+        this.selectedPlayers = data.players || this.selectedPlayers || [];
         this.state = STATE_PLAYING;
 
         // remove existing bg grids:
@@ -91,6 +94,7 @@ export default class Playground extends Phaser.Scene {
         this.load.image('red-particle', 'assets/particles/red.png');
         this.load.image('green-particle', 'assets/particles/green.png');
         this.load.image('yellow-particle', 'assets/particles/yellow.png');
+        this.load.audio('explosion', 'assets/sfx/explode.mp3');
     }
 
     create(data) {
@@ -108,8 +112,8 @@ export default class Playground extends Phaser.Scene {
 
         // --------------------- create player sprites -------------------
         this.players = this.physics.add.group();
-        (data.players || []).forEach((player) => {
-            this.players.add(new PlayerSprite(this, player));
+        this.selectedPlayers.forEach((player) => {
+            this.players.add(new PlayerSprite(this, player).on('die', this.playerDies, this));
         });
         // this.players.add(new PlayerSprite(this, CONST.PLAYER_BLUE));
         // this.players.add(new PlayerSprite(this, CONST.PLAYER_RED));
@@ -168,6 +172,8 @@ export default class Playground extends Phaser.Scene {
             player2.die();
         });
 
+        this.explosion = this.sound.add('explosion', { loop: false });
+
         this.scene.get('ready').events.off('done');
         this.scene.get('ready').events.on('done', () => {
             this.players.getChildren().forEach((player) => player.start());
@@ -176,9 +182,19 @@ export default class Playground extends Phaser.Scene {
         this.scene.get('gameover').events.off('replay');
         this.scene.get('gameover').events.on('replay', () => {
             this.scene.stop('gameover');
-            this.scene.restart(this);
+            this.scene.restart();
         });
+
+        this.scene.get('gameover').events.off('home');
+        this.scene.get('gameover').events.on('home', () => {
+            this.scene.stop('gameover');
+            this.scene.stop('playground');
+            this.scene.launch('gamestart');
+        });
+
+
         this.scene.launch('ready');
+
         // this.scene.launch('gameover', { survivingPlayer: this.players.getChildren()[0] });
 
         // this.addTestArea();
@@ -303,6 +319,12 @@ export default class Playground extends Phaser.Scene {
         if (this.state === STATE_PLAYING) {
             this.state = STATE_CHECK_GAMEOVER;
         }
+    }
+
+    playerDies(player) {
+        this.explosion.play();
+        this.cameras.main.shake(1000, 0.01);
+        this.checkGameOver();
     }
 
     playGameOver(survivingPlayer) {

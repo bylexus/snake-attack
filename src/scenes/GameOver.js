@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import config from '../config';
+import HoverBtn from '../gameObjects/HoverBtn';
 
 export default class GameOver extends Phaser.Scene {
     constructor(objConf) {
@@ -7,7 +8,11 @@ export default class GameOver extends Phaser.Scene {
         super(objConf);
     }
 
-    preload() {}
+    preload() {
+        if (!this.load.textureManager.exists('buttons')) {
+            this.load.multiatlas('buttons', 'assets/spritesheets/buttons.json', 'assets/spritesheets');
+        }
+    }
 
     async create(data) {
         await this.playGameOverSequence(data);
@@ -59,26 +64,25 @@ export default class GameOver extends Phaser.Scene {
             playerTxt.setOrigin(0.5, 0.5);
             winsTxt.setOrigin(0.5, 0.5);
 
-            let replayBtn = this.add.dom(
-                config.gameWidth / 2,
-                config.gameHeight - 100,
-                'button',
-                {
-                    width: '200px',
-                    height: '80px',
-                    borderRadius: '10px',
-                    fontSize: '20pt',
-                    fontWeight: 'bold',
-                    color: '#fff',
-                    backgroundColor: '#00aa00'
-                },
-                'replay'
-            );
-            replayBtn.setVisible(false);
-            replayBtn.addListener('click');
-            replayBtn.on('click', () => {
-                this.events.emit('replay');
-            });
+            let replayBtn = new HoverBtn(this, config.gameWidth / 2, config.gameHeight - 100, 'buttons', {
+                off: 'replay_btn-off.png',
+                over: 'replay_btn-over.png',
+                on: 'replay_btn-on.png'
+            })
+                .on('pressed', () => {
+                    this.events.emit('replay');
+                })
+                .setVisible(false);
+
+            let homeBtn = new HoverBtn(this, 80, config.gameHeight - 100, 'buttons', {
+                off: 'home_btn-off.png',
+                over: 'home_btn-over.png',
+                on: 'home_btn-on.png'
+            })
+                .on('pressed', () => {
+                    this.events.emit('home');
+                })
+                .setVisible(false);
 
             this.tweens.timeline({
                 ease: 'Bounce.easeOut',
@@ -102,7 +106,10 @@ export default class GameOver extends Phaser.Scene {
                         targets: overTxt,
                         duration: 1000,
                         y: config.gameHeight / 2 + 150,
-                        onComplete: () => replayBtn.setVisible(true),
+                        onComplete: () => {
+                            replayBtn.setVisible(true);
+                            homeBtn.setVisible(true);
+                        },
                         offset: 1000
                     },
                     {

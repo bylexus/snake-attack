@@ -149,7 +149,7 @@ export default class PlayerSprite extends Phaser.Physics.Arcade.Sprite {
         this.state = DEATH;
         this.scene.removePlayerTiles(this);
         this.setVisible(false);
-        this.scene.checkGameOver();
+        this.emit('die', this);
     }
 
     destroy() {

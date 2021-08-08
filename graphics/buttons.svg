@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg14178"
+   inkscape:version="1.1 (c4e8f9e, 2021-05-24)"
+   sodipodi:docname="buttons.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14180"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="1.3416246"
+     inkscape:cx="101.36964"
+     inkscape:cy="509.45698"
+     inkscape:window-width="1920"
+     inkscape:window-height="1147"
+     inkscape:window-x="1440"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="18.616434,180.04125"
+       orientation="1,0"
+       id="guide25381" />
+  </sodipodi:namedview>
+  <defs
+     id="defs14175">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient26196">
+      <stop
+         style="stop-color:#9ff9db;stop-opacity:1"
+         offset="0"
+         id="stop26192" />
+      <stop
+         style="stop-color:#1f9371;stop-opacity:1"
+         offset="1"
+         id="stop26194" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient24787">
+      <stop
+         style="stop-color:#15f0a7;stop-opacity:1"
+         offset="0"
+         id="stop24783" />
+      <stop
+         style="stop-color:#16664f;stop-opacity:1"
+         offset="1"
+         id="stop24785" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient21668">
+      <stop
+         style="stop-color:#8fd1ec;stop-opacity:1"
+         offset="0"
+         id="stop21664" />
+      <stop
+         style="stop-color:#183b3f;stop-opacity:1"
+         offset="1"
+         id="stop21666" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient14833">
+      <stop
+         style="stop-color:#14b7f7;stop-opacity:1"
+         offset="0"
+         id="stop14829" />
+      <stop
+         style="stop-color:#142e39;stop-opacity:1"
+         offset="1"
+         id="stop14831" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient14833"
+       id="linearGradient14835"
+       x1="50.880478"
+       y1="58.308434"
+       x2="50.880478"
+       y2="79.212814"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(2.5966779)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient14833"
+       id="linearGradient21206"
+       x1="108.91872"
+       y1="79.57991"
+       x2="108.91872"
+       y2="57.965263"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21668"
+       id="linearGradient21493"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(55.513342)"
+       x1="50.880478"
+       y1="58.308434"
+       x2="50.880478"
+       y2="79.212814" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21668"
+       id="linearGradient22297"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(55.513342)"
+       x1="50.880478"
+       y1="58.308434"
+       x2="50.880478"
+       y2="79.212814" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient14833"
+       id="linearGradient22299"
+       gradientUnits="userSpaceOnUse"
+       x1="108.91872"
+       y1="79.57991"
+       x2="108.91872"
+       y2="57.965263" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient14833"
+       id="linearGradient22301"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(2.5966779)"
+       x1="50.880478"
+       y1="58.308434"
+       x2="50.880478"
+       y2="79.212814" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient24787"
+       id="linearGradient24297"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.39999999,0,0,1,19.289151,59.375785)"
+       x1="50.880478"
+       y1="58.308434"
+       x2="50.880478"
+       y2="79.212814" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter26004"
+       x="-0.014552039"
+       y="-0.014489385"
+       width="1.0715475"
+       height="1.0712395">
+      <feFlood
+         flood-opacity="0.498039"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood25994" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite25996" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.1"
+         result="blur"
+         id="feGaussianBlur25998" />
+      <feOffset
+         dx="0.7"
+         dy="0.7"
+         result="offset"
+         id="feOffset26000" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite26002" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient26196"
+       id="linearGradient26028"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.39999999,0,0,1,40.455819,59.375785)"
+       x1="50.880478"
+       y1="58.308434"
+       x2="50.880478"
+       y2="79.212814" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient24787"
+       id="linearGradient26412"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.39999999,0,0,1,61.622483,59.375785)"
+       x1="57.330009"
+       y1="79.156105"
+       x2="57.330009"
+       y2="57.946789" />
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g20767"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="fill:url(#linearGradient14835);fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect14330"
+         width="52.916668"
+         height="21.166666"
+         x="29.022972"
+         y="57.98008"
+         rx="2.6458333"
+         ry="2.6458333" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="37.17757"
+         y="71.684662"
+         id="text17272"><tspan
+           sodipodi:role="line"
+           id="tspan17270"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="37.17757"
+           y="71.684662">Start!</tspan></text>
+    </g>
+    <g
+       id="g21483"
+       transform="translate(52.916664)"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="fill:url(#linearGradient21206);fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect20769"
+         width="52.916668"
+         height="21.166666"
+         x="81.939636"
+         y="57.98008"
+         rx="2.6458333"
+         ry="2.6458333" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="90.094231"
+         y="71.684662"
+         id="text20773"><tspan
+           sodipodi:role="line"
+           id="tspan20771"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="90.094231"
+           y="71.684662">Start!</tspan></text>
+    </g>
+    <g
+       id="g22271">
+      <rect
+         style="fill:url(#linearGradient21493);fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect21485"
+         width="52.916668"
+         height="21.166666"
+         x="81.939636"
+         y="57.98008"
+         rx="2.6458333"
+         ry="2.6458333"
+         inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="90.094231"
+         y="71.684662"
+         id="text21489"
+         inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan21487"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="90.094231"
+           y="71.684662">Start!</tspan></text>
+    </g>
+    <g
+       id="g22279"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/replay_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="translate(0,21.166664)">
+      <rect
+         style="fill:url(#linearGradient22301);fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect22273"
+         width="52.916668"
+         height="21.166666"
+         x="29.022972"
+         y="57.98008"
+         rx="2.6458333"
+         ry="2.6458333" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="36.324913"
+         y="70.91468"
+         id="text22277"><tspan
+           sodipodi:role="line"
+           id="tspan22275"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="36.324913"
+           y="70.91468">replay</tspan></text>
+    </g>
+    <g
+       id="g22287"
+       transform="translate(52.916664,21.166664)"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="fill:url(#linearGradient22299);fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect22281"
+         width="52.916668"
+         height="21.166666"
+         x="81.939636"
+         y="57.98008"
+         rx="2.6458333"
+         ry="2.6458333"
+         inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/replay_btn.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="89.241577"
+         y="70.91468"
+         id="text22285"
+         inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/replay_btn.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan22283"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="89.241577"
+           y="70.91468">replay</tspan></text>
+    </g>
+    <g
+       id="g22295"
+       transform="translate(0,21.166664)"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/replay_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <rect
+         style="fill:url(#linearGradient22297);fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect22289"
+         width="52.916668"
+         height="21.166666"
+         x="81.939636"
+         y="57.98008"
+         rx="2.6458333"
+         ry="2.6458333"
+         inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="89.241577"
+         y="70.91468"
+         id="text22293"
+         inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/start_btns.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan22291"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+           x="89.241577"
+           y="70.91468">replay</tspan></text>
+    </g>
+    <g
+       id="g26032">
+      <rect
+         style="fill:url(#linearGradient24297);fill-opacity:1;stroke:none;stroke-width:0.502012;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect24289"
+         width="21.166666"
+         height="21.166666"
+         x="29.859669"
+         y="117.35587"
+         rx="2.6458333"
+         ry="2.6458333" />
+      <path
+         id="rect25003"
+         style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter26004)"
+         d="m 40.442743,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 h -1.951819 z" />
+    </g>
+    <rect
+       style="fill:url(#linearGradient26028);fill-opacity:1;stroke:none;stroke-width:0.502012;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect26024"
+       width="21.166666"
+       height="21.166666"
+       x="51.026337"
+       y="117.35587"
+       rx="2.6458333"
+       ry="2.6458333" />
+    <path
+       id="path26026"
+       style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter26004)"
+       d="m 61.609411,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 H 60.63376 Z" />
+    <rect
+       style="fill:url(#linearGradient26412);fill-opacity:1;stroke:none;stroke-width:0.502012;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect26406"
+       width="21.166666"
+       height="21.166666"
+       x="72.193001"
+       y="117.35587"
+       rx="2.6458333"
+       ry="2.6458333" />
+    <path
+       id="path26408"
+       style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter26004)"
+       d="m 82.776075,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 h -1.951819 z" />
+  </g>
+</svg>

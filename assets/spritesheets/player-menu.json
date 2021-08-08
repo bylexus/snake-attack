@@ -1,0 +1,272 @@
+{
+	"textures": [
+		{
+			"image": "player-menu.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1210,
+				"h": 402
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "player-blue-off.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-blue-on.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 202,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-blue-over.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 404,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-green-off.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 606,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-green-on.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 808,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-green-over.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 1010,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-pink-off.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 0,
+						"y": 202,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-pink-on.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 202,
+						"y": 202,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-pink-over.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 404,
+						"y": 202,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-red-off.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 606,
+						"y": 202,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-red-on.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 808,
+						"y": 202,
+						"w": 200,
+						"h": 200
+					}
+				},
+				{
+					"filename": "player-red-over.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 200
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 200
+					},
+					"frame": {
+						"x": 1010,
+						"y": 202,
+						"w": 200,
+						"h": 200
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:711463a6d0f8766ecff66112dfd673ee:4c4316b923e763c2f945df216b0d050a:a937498b12aa86830f9a01098be4e437$"
+	}
+}
