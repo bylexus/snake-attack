@@ -54,6 +54,10 @@ export default class Playground extends Phaser.Scene {
             this.walls = null;
         }
 
+        // Start HUD:
+        this.scene.launch('hud', { players: this.selectedPlayers });
+        this.scene.get('hud').reset();
+
         // Do one-time-init things here, such as creating textures (only once):
         if (this.onetimeInit !== true) {
             this.onetimeInit = true;
@@ -86,6 +90,8 @@ export default class Playground extends Phaser.Scene {
                 markedTexture.strokeRect(0, 0, config.gridWidth, config.gridWidth);
                 markedTexture.generateTexture(`marked-${playerConf.key}`, config.gridWidth, config.gridWidth);
             });
+
+            this.events.on(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
         }
     }
 
@@ -192,13 +198,16 @@ export default class Playground extends Phaser.Scene {
             this.scene.launch('gamestart');
         });
 
-
         this.scene.launch('ready');
 
         // this.scene.launch('gameover', { survivingPlayer: this.players.getChildren()[0] });
 
         // this.addTestArea();
         // this.fillAnnexedArea(this.players.getChildren()[0]);
+    }
+
+    shutdown() {
+        this.scene.stop('hud');
     }
 
     update(time, delta) {
@@ -329,6 +338,7 @@ export default class Playground extends Phaser.Scene {
 
     playGameOver(survivingPlayer) {
         this.state = STATE_GAME_OVER;
+        this.events.emit('win', survivingPlayer);
         this.scene.launch('gameover', { survivingPlayer });
     }
 

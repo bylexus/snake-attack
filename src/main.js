@@ -3,6 +3,7 @@ import config from './config';
 import CONST from './consts';
 import GameStartMenuScene from './scenes/GameStartMenu';
 import PlaygroundScene from './scenes/Playground';
+import HUDScene from './scenes/HUD';
 import ReadyScene from './scenes/Ready';
 import GameOverScene from './scenes/GameOver';
 
@@ -40,10 +41,11 @@ const game = new Phaser.Game(gameConfig);
 
 game.scene.add('gamestart', new GameStartMenuScene());
 game.scene.add('playground', new PlaygroundScene());
+game.scene.add('hud', new HUDScene());
 game.scene.add('ready', new ReadyScene());
 game.scene.add('gameover', new GameOverScene());
 
-// game.scene.run('gamestart');
-game.scene.run('playground', {
-    players: [CONST.PLAYER_BLUE, CONST.PLAYER_PINK]
-});
+game.scene.run('gamestart');
+// game.scene.run('playground', {
+//     players: [CONST.PLAYER_BLUE, CONST.PLAYER_PINK]
+// });

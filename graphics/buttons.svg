@@ -395,7 +395,10 @@
            y="70.91468">replay</tspan></text>
     </g>
     <g
-       id="g26032">
+       id="g26032"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/home_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
       <rect
          style="fill:url(#linearGradient24297);fill-opacity:1;stroke:none;stroke-width:0.502012;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect24289"
@@ -418,11 +421,17 @@
        x="51.026337"
        y="117.35587"
        rx="2.6458333"
-       ry="2.6458333" />
+       ry="2.6458333"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/home_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        id="path26026"
        style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter26004)"
-       d="m 61.609411,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 H 60.63376 Z" />
+       d="m 61.609411,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 H 60.63376 Z"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/home_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:url(#linearGradient26412);fill-opacity:1;stroke:none;stroke-width:0.502012;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect26406"
@@ -431,10 +440,16 @@
        x="72.193001"
        y="117.35587"
        rx="2.6458333"
-       ry="2.6458333" />
+       ry="2.6458333"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/home_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        id="path26408"
        style="fill:#e3dbdb;fill-opacity:1;stroke:none;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter26004)"
-       d="m 82.776075,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 h -1.951819 z" />
+       d="m 82.776075,119.65728 -8.246008,8.35608 h 2.98173 v 8.20777 h 10.528556 v -8.20777 h 2.982248 z m -3.676778,8.35608 h 1.952336 v 1.95234 h -1.952336 z m 5.401221,0 h 1.952335 v 1.95234 h -1.952335 z m -2.700094,4.069 h 1.951819 v 3.41633 h -1.951819 z"
+       inkscape:export-filename="/Users/alex/dev/snake-attack/graphics/home_btn.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
 </svg>
